@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-20.04
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
@@ -42,9 +42,9 @@ jobs:
             libtool \
             build-essential \
             openjdk-17-jdk \
-            libtool-bin   # <-- ESSENCIAL para resolver o erro
+            libtool-bin
 
-      - name: Limpar cache do Buildozer (opcional, mas recomendado)
+      - name: Limpar cache do Buildozer
         run: |
           rm -rf ~/.buildozer
           rm -rf .buildozer
@@ -58,11 +58,10 @@ jobs:
         run: |
           export PATH=$PATH:~/.local/bin/
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          yes | buildozer android debug
+          yes | buildozer -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: bin/*.apk
-runs-on: ubuntu-20.04
