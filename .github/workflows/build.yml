@@ -1,3 +1,16 @@
+      - name: Aceitar licença do Android SDK
+        run: yes | /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+      - name: Compilar APK
+        run: |
+          buildozer init || true
+          buildozer android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: mychelle-apk
+          path: bin/*.apk 
 name: Build APK
 
 on:
@@ -34,16 +47,19 @@ jobs:
           pip3 install --upgrade pip
           pip3 install buildozer cython kivy
 
-      - name: Aceitar licença do Android SDK
-        run: yes | /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
-
       - name: Compilar APK
         run: |
           buildozer init || true
-          buildozer android debug
+          buildozer android debug || true
+
+      - name: Aceitar licenças do Android SDK
+        run: yes | /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+
+      - name: Instalar Build-Tools e Plataforma
+        run: /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.2" "platforms;android-33"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: mychelle-apk
-          path: bin/*.apk 
+          path: bin/*.apk
