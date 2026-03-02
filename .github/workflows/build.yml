@@ -47,10 +47,14 @@ jobs:
           pip3 install --user --upgrade Cython pip
           pip3 install --user buildozer
 
+      - name: Aceitar licenças automaticamente
+        run: |
+          yes | ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses
+
       - name: Compilar APK com Buildozer
         run: |
           export PATH=$PATH:~/.local/bin/
-          buildozer android debug
+          yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
