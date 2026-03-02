@@ -16,7 +16,20 @@ jobs:
       - name: Instalar dependências
         run: |
           sudo apt-get update
-          sudo apt-get install -y openjdk-11-jdk
+          sudo apt-get install -y \
+            openjdk-11-jdk \
+            python3-pip \
+            python3-setuptools \
+            python3-wheel \
+            unzip \
+            git \
+            zlib1g-dev \
+            libncurses5-dev \
+            libstdc++6 \
+            libffi-dev \
+            libssl-dev \
+            libsqlite3-dev
+          pip3 install --upgrade pip
           pip3 install buildozer cython kivy
 
       - name: Compilar APK
