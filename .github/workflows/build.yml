@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Código de desconto
+      - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Instalar dependências
+      - name: Instalar dependências de sistema
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -42,14 +42,19 @@ jobs:
             libtool \
             build-essential \
             openjdk-17-jdk \
-            libtool-bin  # <-- NOVO: necessário para libffi
+            libtool-bin   # <-- ESSENCIAL para resolver o erro
+
+      - name: Limpar cache do Buildozer (opcional, mas recomendado)
+        run: |
+          rm -rf ~/.buildozer
+          rm -rf .buildozer
 
       - name: Instalar Cython e Buildozer
         run: |
           pip3 install --user --upgrade Cython pip
           pip3 install --user buildozer
 
-      - name: Compilar APK com Buildozer (com aceitação automática)
+      - name: Compilar APK com Buildozer
         run: |
           export PATH=$PATH:~/.local/bin/
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -59,4 +64,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: bin/*.apk 
+          path: bin/*.apk
