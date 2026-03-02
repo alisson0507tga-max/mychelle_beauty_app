@@ -199,3 +199,4 @@ Este projeto é fornecido como está para uso pessoal e comercial.
 **Última atualização**: Março 2026  
 **Desenvolvido com**: Kivy + Python
 # Teste para rodar workflow
+# Teste workflow
