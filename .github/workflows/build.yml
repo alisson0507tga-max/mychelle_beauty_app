@@ -40,10 +40,14 @@ jobs:
           buildozer android debug || true
 
       - name: Aceitar licenças do Android SDK
-        run: yes | /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        run: |
+          SDKMANAGER=$(find /home/runner/.buildozer/android/platform/android-sdk -name sdkmanager | head -n 1)
+          yes | $SDKMANAGER --licenses
 
       - name: Instalar Build-Tools e Plataforma
-        run: /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;33.0.2" "platforms;android-33"
+        run: |
+          SDKMANAGER=$(find /home/runner/.buildozer/android/platform/android-sdk -name sdkmanager | head -n 1)
+          $SDKMANAGER "build-tools;33.0.2" "platforms;android-33"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
