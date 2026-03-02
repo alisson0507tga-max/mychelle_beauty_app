@@ -1,3 +1,6 @@
+jobs:
+  build:
+    runs-on: ubuntu-20.04   # <-- mude aqui
 name: Criar APK
 
 on:
