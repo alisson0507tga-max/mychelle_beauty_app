@@ -35,7 +35,7 @@ jobs:
           pip3 install buildozer cython kivy
 
       - name: Aceitar licença do Android SDK
-        run: yes | sdkmanager --licenses
+        run: yes | /home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Compilar APK
         run: |
@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mychelle-apk
-          path: bin/*.apk
+          path: bin/*.apk 
