@@ -41,7 +41,8 @@ jobs:
             automake \
             libtool \
             build-essential \
-            openjdk-17-jdk
+            openjdk-17-jdk \
+            libtool-bin  # <-- NOVO: necessário para libffi
 
       - name: Instalar Cython e Buildozer
         run: |
@@ -51,13 +52,11 @@ jobs:
       - name: Compilar APK com Buildozer (com aceitação automática)
         run: |
           export PATH=$PATH:~/.local/bin/
-          # Configurar Java
           export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          # Aceitar todas as perguntas com 'yes'
           yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: bin/*.apk
+          path: bin/*.apk 
