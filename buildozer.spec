@@ -3,11 +3,20 @@ title = Mychelle Beauty
 package.name = mychellebeauty
 package.domain = org.mychelle
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,json
+source.include_exts = py,png,jpg,kv,atlas
 version = 0.1
 requirements = python3,kivy
 orientation = portrait
 fullscreen = 1
+
+# Versão mínima do Android suportada
+android.api = 33
+# Versão do NDK usada pelo Buildozer
+android.ndk = 25b
+# Versão do SDK usada pelo Buildozer
+android.sdk = 33
+# Versão mínima do Android para rodar o app
+android.minapi = 21
 
 [buildozer]
 log_level = 2
