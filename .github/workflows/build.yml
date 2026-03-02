@@ -28,9 +28,14 @@ jobs:
             libstdc++6 \
             libffi-dev \
             libssl-dev \
-            libsqlite3-dev
+            libsqlite3-dev \
+            libgl1-mesa-dev \
+            libgles2-mesa-dev
           pip3 install --upgrade pip
           pip3 install buildozer cython kivy
+
+      - name: Aceitar licença do Android SDK
+        run: yes | sdkmanager --licenses
 
       - name: Compilar APK
         run: |
