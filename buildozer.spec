@@ -13,8 +13,6 @@ fullscreen = 1
 android.api = 33
 # Versão do NDK usada pelo Buildozer
 android.ndk = 25b
-# Versão do SDK usada pelo Buildozer
-android.sdk = 33
 # Versão mínima do Android para rodar o app
 android.minapi = 21
 
