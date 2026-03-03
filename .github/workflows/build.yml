@@ -1,4 +1,4 @@
-name: Criar AP
+name: Criar APK
 
 on:
   push:
