@@ -16,11 +16,7 @@ jobs:
 
     - name: Instalar dependências do sistema
       run: |
-        sudo apt-get update
-        sudo apt-get install -y openjdk-11-jdk unzip zip libssl-dev zlib1g-dev \
-          automake autoconf libtool pkg-config python3-dev
-        python3 -m pip install --upgrade pip
-        pip install buildozer cython kivy
+        Use Python 3.11 to fix Cython compatibility issue
 
     - name: Limpar cache do Buildozer
       run: rm -rf .buildozer
